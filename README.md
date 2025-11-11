@@ -1,4 +1,4 @@
-# testownik_demo
+# testownik
 
 A new Flutter project.
 
