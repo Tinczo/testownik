@@ -6,14 +6,15 @@ import 'package:testownik/models/session.dart';
 import 'package:testownik/models/session_new_data.dart';
 
 class SessionBottomBar extends StatefulWidget {
-  const SessionBottomBar(
-      {super.key,
-      required this.session,
-      required this.sessionData,
-      required this.setAnswered,
-      required this.width,
-      required this.question,
-      required this.nextQuestion});
+  const SessionBottomBar({
+    super.key,
+    required this.session,
+    required this.sessionData,
+    required this.setAnswered,
+    required this.width,
+    required this.question,
+    required this.nextQuestion,
+  });
 
   final Session session;
   final Question question;
@@ -62,15 +63,16 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.bodySmall!.copyWith(
-          fontSize: 13,
-          fontWeight: FontWeight.w600,
-          color: Theme.of(context).colorScheme.onBackground,
-        );
+      fontSize: 13,
+      fontWeight: FontWeight.w600,
+      color: Theme.of(context).colorScheme.onBackground,
+    );
 
     return isLeftHandedMode
         ? Container(
-            color:
-                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.8),
+            color: Theme.of(
+              context,
+            ).colorScheme.inversePrimary.withOpacity(0.8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -84,8 +86,9 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
                           : widget.setAnswered(),
                       onLongPress: switchHandMode,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.inversePrimary,
+                        backgroundColor: Theme.of(
+                          context,
+                        ).colorScheme.inversePrimary,
                       ),
                       child: Text(
                         widget.question.isAnswered ? "Następne" : " Sprawdź ",
@@ -104,64 +107,75 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                              width:
-                                  pointsBoxLength(widget.session.goodAnswers),
-                              child: Text(
-                                "${widget.session.goodAnswers}",
-                                style: textStyle.copyWith(color: Colors.green),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.goodAnswers),
+                            child: Text(
+                              "${widget.session.goodAnswers}",
+                              style: textStyle.copyWith(color: Colors.green),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                           SizedBox(
-                              width:
-                                  pointsBoxLength(widget.session.goodAnswers),
-                              child: Text(
-                                "+${widget.sessionData.newGoodAnswers}",
-                                style: textStyle.copyWith(
-                                    color: Colors.green.withOpacity(0.6)),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.goodAnswers),
+                            child: Text(
+                              "+${widget.sessionData.newGoodAnswers}",
+                              style: textStyle.copyWith(
+                                color: Colors.green.withOpacity(0.6),
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers +
-                                  widget.session.goodAnswers),
-                              child: Text(
-                                "${widget.session.badAnswers + widget.session.goodAnswers}",
-                                style: textStyle,
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(
+                              widget.session.badAnswers +
+                                  widget.session.goodAnswers,
+                            ),
+                            child: Text(
+                              "${widget.session.badAnswers + widget.session.goodAnswers}",
+                              style: textStyle,
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers +
-                                  widget.session.goodAnswers),
-                              child: Text(
-                                "+${widget.sessionData.newAllAnswers}",
-                                style: textStyle.copyWith(
-                                    color: textStyle.color!.withOpacity(0.6)),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(
+                              widget.session.badAnswers +
+                                  widget.session.goodAnswers,
+                            ),
+                            child: Text(
+                              "+${widget.sessionData.newAllAnswers}",
+                              style: textStyle.copyWith(
+                                color: textStyle.color!.withOpacity(0.6),
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers),
-                              child: Text(
-                                "${widget.session.badAnswers}",
-                                style: textStyle.copyWith(color: Colors.red),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.badAnswers),
+                            child: Text(
+                              "${widget.session.badAnswers}",
+                              style: textStyle.copyWith(color: Colors.red),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers),
-                              child: Text(
-                                "+${widget.sessionData.newBadAnswers}",
-                                style: textStyle.copyWith(
-                                    color: Colors.red.withOpacity(0.6)),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.badAnswers),
+                            child: Text(
+                              "+${widget.sessionData.newBadAnswers}",
+                              style: textStyle.copyWith(
+                                color: Colors.red.withOpacity(0.6),
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -174,30 +188,31 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                          width: 100,
-                          child: Text(
-                            widget.session.time,
-                            style: GoogleFonts.courierPrime().copyWith(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onBackground,
-                            ),
-                            textAlign: TextAlign.right,
-                          )),
+                        width: 100,
+                        child: Text(
+                          widget.session.time,
+                          style: GoogleFonts.courierPrime().copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
                       SizedBox(
-                          width: 100,
-                          child: Text(
-                            "+${widget.sessionData.newTime}",
-                            style: GoogleFonts.courierPrime().copyWith(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onBackground
-                                  .withOpacity(0.7),
-                            ),
-                            textAlign: TextAlign.right,
-                          )),
+                        width: 100,
+                        child: Text(
+                          "+${widget.sessionData.newTime}",
+                          style: GoogleFonts.courierPrime().copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onBackground.withOpacity(0.7),
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -205,8 +220,9 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
             ),
           )
         : Container(
-            color:
-                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.8),
+            color: Theme.of(
+              context,
+            ).colorScheme.inversePrimary.withOpacity(0.8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -217,30 +233,31 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                          width: 100,
-                          child: Text(
-                            widget.session.time,
-                            style: GoogleFonts.courierPrime().copyWith(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onBackground,
-                            ),
-                            textAlign: TextAlign.right,
-                          )),
+                        width: 100,
+                        child: Text(
+                          widget.session.time,
+                          style: GoogleFonts.courierPrime().copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
                       SizedBox(
-                          width: 100,
-                          child: Text(
-                            "+${widget.sessionData.newTime}",
-                            style: GoogleFonts.courierPrime().copyWith(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onBackground
-                                  .withOpacity(0.7),
-                            ),
-                            textAlign: TextAlign.right,
-                          )),
+                        width: 100,
+                        child: Text(
+                          "+${widget.sessionData.newTime}",
+                          style: GoogleFonts.courierPrime().copyWith(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onBackground.withOpacity(0.7),
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -254,86 +271,95 @@ class _SessionBottomBarState extends State<SessionBottomBar> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                              width:
-                                  pointsBoxLength(widget.session.goodAnswers),
-                              child: Text(
-                                "${widget.session.goodAnswers}",
-                                style: textStyle.copyWith(color: Colors.green),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.goodAnswers),
+                            child: Text(
+                              "${widget.session.goodAnswers}",
+                              style: textStyle.copyWith(color: Colors.green),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                           SizedBox(
-                              width:
-                                  pointsBoxLength(widget.session.goodAnswers),
-                              child: Text(
-                                "+${widget.sessionData.newGoodAnswers}",
-                                style: textStyle.copyWith(
-                                    color: Colors.green.withOpacity(0.6)),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.goodAnswers),
+                            child: Text(
+                              "+${widget.sessionData.newGoodAnswers}",
+                              style: textStyle.copyWith(
+                                color: Colors.green.withOpacity(0.6),
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers +
-                                  widget.session.goodAnswers),
-                              child: Text(
-                                "${widget.session.badAnswers + widget.session.goodAnswers}",
-                                style: textStyle,
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(
+                              widget.session.badAnswers +
+                                  widget.session.goodAnswers,
+                            ),
+                            child: Text(
+                              "${widget.session.badAnswers + widget.session.goodAnswers}",
+                              style: textStyle,
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers +
-                                  widget.session.goodAnswers),
-                              child: Text(
-                                "+${widget.sessionData.newAllAnswers}",
-                                style: textStyle.copyWith(
-                                    color: textStyle.color!.withOpacity(0.6)),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(
+                              widget.session.badAnswers +
+                                  widget.session.goodAnswers,
+                            ),
+                            child: Text(
+                              "+${widget.sessionData.newAllAnswers}",
+                              style: textStyle.copyWith(
+                                color: textStyle.color!.withOpacity(0.6),
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers),
-                              child: Text(
-                                "${widget.session.badAnswers}",
-                                style: textStyle.copyWith(color: Colors.red),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.badAnswers),
+                            child: Text(
+                              "${widget.session.badAnswers}",
+                              style: textStyle.copyWith(color: Colors.red),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                           SizedBox(
-                              width: pointsBoxLength(widget.session.badAnswers),
-                              child: Text(
-                                "+${widget.sessionData.newBadAnswers}",
-                                style: textStyle.copyWith(
-                                    color: Colors.red.withOpacity(0.6)),
-                                textAlign: TextAlign.right,
-                              )),
+                            width: pointsBoxLength(widget.session.badAnswers),
+                            child: Text(
+                              "+${widget.sessionData.newBadAnswers}",
+                              style: textStyle.copyWith(
+                                color: Colors.red.withOpacity(0.6),
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * widget.width,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                    child: ElevatedButton(
-                      onPressed: widget.question.isAnswered
-                          ? widget.nextQuestion()
-                          : widget.setAnswered(),
-                      onLongPress: switchHandMode,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.inversePrimary,
-                      ),
-                      child: Text(
-                        widget.question.isAnswered ? "Następne" : " Sprawdź ",
-                        style: textStyle,
-                      ),
+                  child: ElevatedButton(
+                    onPressed: widget.question.isAnswered
+                        ? widget.nextQuestion()
+                        : widget.setAnswered(),
+                    onLongPress: switchHandMode,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.inversePrimary,
+                    ),
+                    child: Text(
+                      widget.question.isAnswered ? "Następne" : " Sprawdź ",
+                      style: textStyle,
                     ),
                   ),
                 ),
