@@ -66,7 +66,8 @@ class SessionItem extends StatelessWidget {
               textAlign: TextAlign.center,
               title,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,10 +75,7 @@ class SessionItem extends StatelessWidget {
                 SizedBox(
                   width: 40,
                   child: IconButton(
-                    icon: Icon(
-                      icon,
-                      size: 30,
-                    ),
+                    icon: Icon(icon, size: 30),
                     onPressed: onLongPress,
                     color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
@@ -87,13 +85,11 @@ class SessionItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       SizedBox(
-                        width: 70,
+                        width: 55,
                         child: Center(
                           child: Text(
                             "$goodAnswers",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
+                            style: Theme.of(context).textTheme.bodySmall!
                                 .copyWith(color: Colors.green),
                           ),
                         ),
@@ -103,29 +99,26 @@ class SessionItem extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "${badAnswers + goodAnswers}/$allAnswers",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
+                            style: Theme.of(context).textTheme.bodySmall!
                                 .copyWith(
                                   color: badAnswers + goodAnswers == allAnswers
                                       ? Theme.of(context).colorScheme.primary
                                       : Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant
-                                          .withOpacity(0.8),
+                                            .colorScheme
+                                            .onSurfaceVariant
+                                            .withOpacity(0.8),
                                 ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        width: 61,
+                        width: 55,
                         child: Center(
                           child: Text(
                             "$badAnswers",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(color: Colors.red),
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodySmall!.copyWith(color: Colors.red),
                           ),
                         ),
                       ),
@@ -133,10 +126,7 @@ class SessionItem extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 35,
-                  ),
+                  icon: const Icon(Icons.delete, size: 35),
                   onPressed: onDelete,
                 ),
               ],
