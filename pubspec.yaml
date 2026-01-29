@@ -38,4 +38,5 @@ flutter:
 
   assets:
     - assets/sounds/
+    - assets/fonts/
 

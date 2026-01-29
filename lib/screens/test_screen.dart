@@ -70,6 +70,18 @@ class _SessionTestScreenState extends State<SessionTestScreen>
   @override
   void initState() {
     super.initState();
+    AudioPlayer.global.setAudioContext(AudioContext(
+      android: AudioContextAndroid(
+        audioFocus: AndroidAudioFocus.none,
+        isSpeakerphoneOn: false,
+        audioMode: AndroidAudioMode.normal,
+        usageType: AndroidUsageType.notificationEvent,
+        contentType: AndroidContentType.sonification,
+      ),
+      iOS: AudioContextIOS(
+        category: AVAudioSessionCategory.ambient,
+      ),
+    ));
     _startTimer();
     _controller = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
@@ -224,18 +236,6 @@ class _SessionTestScreenState extends State<SessionTestScreen>
     void setAnswered() {
       setState(() {
         final player = AudioPlayer();
-        player.setAudioContext(AudioContext(
-          android: AudioContextAndroid(
-            audioFocus: AndroidAudioFocus.none,
-            isSpeakerphoneOn: false,
-            audioMode: AndroidAudioMode.normal,
-            usageType: AndroidUsageType.notificationEvent,
-            contentType: AndroidContentType.sonification,
-          ),
-          iOS: AudioContextIOS(
-            category: AVAudioSessionCategory.ambient,
-          ),
-        ));
         currentQuestion.isAnswered = true;
 
         bool isAnsweredCorrectly;
@@ -268,18 +268,6 @@ class _SessionTestScreenState extends State<SessionTestScreen>
     void nextQuestion() {
       bool isAnsweredCorrectly;
       final player = AudioPlayer();
-      player.setAudioContext(AudioContext(
-        android: AudioContextAndroid(
-          audioFocus: AndroidAudioFocus.none,
-          isSpeakerphoneOn: false,
-          audioMode: AndroidAudioMode.normal,
-          usageType: AndroidUsageType.notificationEvent,
-          contentType: AndroidContentType.sonification,
-        ),
-        iOS: AudioContextIOS(
-          category: AVAudioSessionCategory.ambient,
-        ),
-      ));
 
       if (currentQuestion.type == QuestionType.open ||
           widget.session.type == QuestionType.open) {
@@ -325,18 +313,6 @@ class _SessionTestScreenState extends State<SessionTestScreen>
                   _updateProgress();
                 } else {
                   final player = AudioPlayer();
-                  player.setAudioContext(AudioContext(
-                    android: AudioContextAndroid(
-                      audioFocus: AndroidAudioFocus.none,
-                      isSpeakerphoneOn: false,
-                      audioMode: AndroidAudioMode.normal,
-                      usageType: AndroidUsageType.notificationEvent,
-                      contentType: AndroidContentType.sonification,
-                    ),
-                    iOS: AudioContextIOS(
-                      category: AVAudioSessionCategory.ambient,
-                    ),
-                  ));
                   player
                       .setSource(AssetSource('sounds/finish.mp3'))
                       .then((value) => player.resume());
